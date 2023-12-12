@@ -1,20 +1,19 @@
-import { FC, InputHTMLAttributes, Ref, forwardRef } from 'react';
+import { FC, Ref, SelectHTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
+import { FieldError } from 'react-hook-form';
 
 interface SelectOption {
   code: string;
   name: string;
 };
 
-interface SelectItemProps extends InputHTMLAttributes<HTMLInputElement> {
+interface SelectItemProps extends SelectHTMLAttributes<HTMLSelectElement> {
   selectId: string;
   selectLabel: string;
   placeholder: string;
-  errors?: {
-    message: string;
-  } | undefined;
-  disabled: boolean;
+  errors?: FieldError | undefined;
+  disabled?: boolean;
   options: SelectOption[] | undefined,
 };
 
@@ -28,8 +27,9 @@ export const SelectItem: FC<SelectItemProps> = forwardRef((
     options,
     ...props
   },
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLSelectElement>
 ) => {
+  console.log(errors)
   return ( 
     <div className={styles.input_container}>
       <label

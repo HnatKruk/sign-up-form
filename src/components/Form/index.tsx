@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,8 +6,13 @@ import { schema } from '../../utils/schema';
 import { COUNTRIES } from '../../ mocks/countries';
 import { CheckboxItem, InputItem, RadioItem, SelectItem } from '..';
 import styles from './styles.module.scss';
+import { TableDataInterface } from '../../utils/interfaces';
 
-export const Form: FC = ({ setIsFormData }) => {
+interface FormProps {
+  setIsFormData: Dispatch<SetStateAction<TableDataInterface>>;
+}
+
+export const Form: FC<FormProps> = ({ setIsFormData }) => {
   const {
     handleSubmit,
     register,
@@ -101,7 +106,7 @@ export const Form: FC = ({ setIsFormData }) => {
           <SelectItem
             selectId={'countryId'}
             selectLabel={'Select your country*'}
-            errors={errors.country}
+            errors={errors?.country}
             placeholder={'Your country must be selected'}
             options={COUNTRIES}
             {...register('country', { shouldUnregister: true })}
@@ -109,7 +114,7 @@ export const Form: FC = ({ setIsFormData }) => {
           <SelectItem
             selectId={'cityId'}
             selectLabel={'Select your city*'}
-            errors={errors.city}
+            errors={errors?.city}
             placeholder={'Your city must be selected'}
             disabled={!watch('country')}
             options={COUNTRIES

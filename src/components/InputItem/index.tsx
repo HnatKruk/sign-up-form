@@ -1,15 +1,14 @@
 import { FC, forwardRef, Ref, InputHTMLAttributes } from 'react';
 import classNames from 'classnames'; 
 import styles from './styles.module.scss';
+import { FieldError } from 'react-hook-form';
 
 interface InputItemProps extends InputHTMLAttributes<HTMLInputElement> {
   inputId: string;
   inputType: string;
   inputLabel: string;
   placeholder: string;
-  errors?: {
-    message: string;
-  } | undefined;
+  errors?: FieldError | undefined;
 };
 
 export const InputItem: FC<InputItemProps> = forwardRef((

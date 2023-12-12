@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import { Form, Table } from '..';
 import styles from './styles.module.scss';
+import { TableDataInterface } from '../../utils/interfaces';
 
 export const App: FC = () => {
-  const [formData, setIsFormData] = useState(null);
+  const [formData, setIsFormData] = useState<TableDataInterface>(null);
 
   return (
     <div className={styles.app}>

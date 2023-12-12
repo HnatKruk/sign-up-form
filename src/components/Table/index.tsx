@@ -1,7 +1,12 @@
 import { FC } from 'react';
 import styles from './styles.module.scss';
+import { TableDataInterface } from '../../utils/interfaces';
 
-export const Table: FC = ({ tableData }) => (
+interface TableProps {
+  tableData: TableDataInterface;
+}
+
+export const Table: FC<TableProps> = ({ tableData }) => tableData && (
   <table className={styles.tableData}>
     <caption className={styles.tableData_caption}>User Data</caption>
     <thead className={styles.tableData_head}>
